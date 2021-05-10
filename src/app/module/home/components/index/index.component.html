@@ -1,0 +1,44 @@
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="add-btn">
+        <div class="btn btn-primary" (click)="addNewEmployee()">Add <i class="fas fa-plus"></i></div>
+      </div>
+      <ng-container *ngIf="employeeData && employeeData.length;else noDatafound">
+        <div class="table-responsive">
+          <table class="table table-primary table-striped table-hover">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>Department</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let data of employeeData; index as i ">
+                <tr>
+                  <td>{{data.firstName}}</td>
+                  <td>{{data.lastName}}</td>
+                  <td>{{data.dob}}</td>
+                  <td>{{data.gender}}</td>
+                  <td>{{data.department}}</td>
+                  <td class="action-btn"><i class="fas fa-eye btn btn-primary" (click)="view(i)"></i>
+                    <i class="fas fa-trash-alt btn btn-danger" (click)="deleteEmployee(i)"></i>
+                    <i class="fas fa-edit btn btn-success" (click)="edit(i)"></i>
+
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </ng-container>
+      <ng-template #noDatafound>
+        <h5>No data found :(</h5>
+      </ng-template>
+    </div>
+  </div>
+</div>
